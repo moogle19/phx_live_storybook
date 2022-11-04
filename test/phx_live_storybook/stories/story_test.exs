@@ -17,8 +17,8 @@ defmodule PhxLiveStorybook.StoryTest do
     test "attributes from component & story are merged" do
       defmodule Component do
         use Phoenix.Component
-        attr(:label, :string, required: true, doc: "documentation", examples: ["foo", "bar"])
-        attr(:type, :atom, required: true, doc: "overriden", values: [:foo, :bar])
+        attr :label, :string, required: true, doc: "documentation", examples: ["foo", "bar"]
+        attr :type, :atom, required: true, doc: "overriden", values: [:foo, :bar]
         def my_component(_assigns), do: nil
       end
 
@@ -71,7 +71,7 @@ defmodule PhxLiveStorybook.StoryTest do
         slot(:foo, required: true)
 
         slot :nested, doc: "with nested attrs" do
-          attr(:nested_attr, :string)
+          attr :nested_attr, :string
         end
 
         def slot_component(_assigns), do: nil
@@ -111,8 +111,8 @@ defmodule PhxLiveStorybook.StoryTest do
     test "attributes from component & story are merged" do
       defmodule LiveComponent do
         use Phoenix.LiveComponent
-        attr(:label, :string, required: true, doc: "documentation", examples: ["foo", "bar"])
-        attr(:type, :atom, required: true, doc: "overriden", values: [:foo, :bar])
+        attr :label, :string, required: true, doc: "documentation", examples: ["foo", "bar"]
+        attr :type, :atom, required: true, doc: "overriden", values: [:foo, :bar]
         def render(_assigns), do: nil
       end
 
@@ -165,7 +165,7 @@ defmodule PhxLiveStorybook.StoryTest do
         slot(:foo, required: true)
 
         slot :nested, doc: "with nested attrs" do
-          attr(:nested_attr, :string)
+          attr :nested_attr, :string
         end
 
         def render(_assigns), do: nil

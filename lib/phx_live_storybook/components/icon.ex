@@ -11,22 +11,20 @@ defmodule PhxLiveStorybook.Components.Icon do
       <.fa_icon name="book" style={:duotone} plan={:pro}/>
   """
 
-  attr(:style, :atom,
+  attr :style, :atom,
     default: :solid,
     values: ~w(solid regular light thin duotone brands)a,
     doc: "One of the styles provided by FontAwesome."
-  )
 
-  attr(:plan, :atom,
+  attr :plan, :atom,
     required: true,
     values: ~w(free pro)a,
     doc: "Free plan will make all icons render with solid style."
-  )
 
-  attr(:name, :string, required: true, doc: "The name of the icon, without the fa- prefix.")
-  attr(:class, :string, default: nil, doc: "Additional CSS classes")
-  attr(:class_list, :list, default: [], doc: "Additional CSS classes")
-  attr(:rest, :global, doc: "Any HTML attribute")
+  attr :name, :string, required: true, doc: "The name of the icon, without the fa- prefix."
+  attr :class, :string, default: nil, doc: "Additional CSS classes"
+  attr :class_list, :list, default: [], doc: "Additional CSS classes"
+  attr :rest, :global, doc: "Any HTML attribute"
 
   def fa_icon(assigns = %{plan: :free}) do
     ~H(<i class={["fa-solid fa-#{@name}", @class | @class_list]} {@rest}></i>)
@@ -45,16 +43,15 @@ defmodule PhxLiveStorybook.Components.Icon do
       <.hero_icon name="cake" style={:mini}/>
   """
 
-  attr(:style, :atom,
+  attr :style, :atom,
     default: :outline,
     values: ~w(outline solid mini)a,
     doc: "One of the styles provided by HeroIcons."
-  )
 
-  attr(:name, :string, required: true, doc: "The name of the icon")
-  attr(:class, :string, default: nil, doc: "Additional CSS classes")
-  attr(:class_list, :list, default: [], doc: "Additional CSS classes")
-  attr(:rest, :global, doc: "Any HTML attribute")
+  attr :name, :string, required: true, doc: "The name of the icon"
+  attr :class, :string, default: nil, doc: "Additional CSS classes"
+  attr :class_list, :list, default: [], doc: "Additional CSS classes"
+  attr :rest, :global, doc: "Any HTML attribute"
 
   def hero_icon(assigns) do
     if Code.ensure_loaded?(Heroicons) do
@@ -90,7 +87,7 @@ defmodule PhxLiveStorybook.Components.Icon do
       <.user_icon icon={:hero, "cake", :mini, "w-2 h-2"} class="text-indigo-400"/>
   """
 
-  attr(:icon, :any,
+  attr :icon, :any,
     required: true,
     doc: "Icon config, a tuple of 2 to 4 items: {provider, icon, style, classes}",
     examples: [
@@ -99,45 +96,43 @@ defmodule PhxLiveStorybook.Components.Icon do
       {:fa, "book", :duotone, "fa-fw"},
       {:hero, "cake", :solid, "w-2 h-2"}
     ]
-  )
 
-  attr(:fa_plan, :atom,
+  attr :fa_plan, :atom,
     required: true,
     values: ~w(free pro)a,
     doc: "Free plan will make all icons render with solid style."
-  )
 
-  attr(:class, :string, default: nil, doc: "Additional CSS classes")
-  attr(:rest, :global, doc: "Any HTML attribute")
+  attr :class, :string, default: nil, doc: "Additional CSS classes"
+  attr :rest, :global, doc: "Any HTML attribute"
 
   def user_icon(assigns = %{icon: {:fa, name}}) do
     assigns = assign(assigns, name: name)
-    ~H(<.fa_icon name={@name} plan={@fa_plan} class={@class} {@rest}/>)
+    ~H(<.fa_icon name={@name} plan={@fa_plan} class={@class} {@rest} />)
   end
 
   def user_icon(assigns = %{icon: {:fa, name, style}}) do
     assigns = assign(assigns, name: name, style: style)
-    ~H(<.fa_icon name={@name} style={@style} plan={@fa_plan} class={@class} {@rest}/>)
+    ~H(<.fa_icon name={@name} style={@style} plan={@fa_plan} class={@class} {@rest} />)
   end
 
   def user_icon(assigns = %{icon: {:fa, name, style, class}}) do
     assigns = assign(assigns, name: name, style: style, icon_class: class)
 
-    ~H(<.fa_icon name={@name} style={@style} plan={@fa_plan} class_list={[@icon_class, @class]} {@rest}/>)
+    ~H(<.fa_icon name={@name} style={@style} plan={@fa_plan} class_list={[@icon_class, @class]} {@rest} />)
   end
 
   def user_icon(assigns = %{icon: {:hero, name}}) do
     assigns = assign(assigns, name: name)
-    ~H(<.hero_icon name={@name} class={@class} {@rest}/>)
+    ~H(<.hero_icon name={@name} class={@class} {@rest} />)
   end
 
   def user_icon(assigns = %{icon: {:hero, name, style}}) do
     assigns = assign(assigns, name: name, style: style)
-    ~H(<.hero_icon name={@name} style={@style} class={@class} {@rest}/>)
+    ~H(<.hero_icon name={@name} style={@style} class={@class} {@rest} />)
   end
 
   def user_icon(assigns = %{icon: {:hero, name, style, class}}) do
     assigns = assign(assigns, name: name, style: style, icon_class: class)
-    ~H(<.hero_icon name={@name} style={@style} class_list={[@icon_class, @class]} {@rest}/>)
+    ~H(<.hero_icon name={@name} style={@style} class_list={[@icon_class, @class]} {@rest} />)
   end
 end
